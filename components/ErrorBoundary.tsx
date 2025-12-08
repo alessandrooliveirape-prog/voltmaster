@@ -29,6 +29,9 @@ export class ErrorBoundary extends React.Component<Props, State> {
 
   public render() {
     if (this.state.hasError) {
+      // Safely check for development environment
+      const isDev = typeof process !== 'undefined' && process.env.NODE_ENV === 'development';
+
       return (
         <div className="min-h-screen bg-slate-900 text-white flex flex-col items-center justify-center p-6 text-center">
           <div className="w-16 h-16 bg-red-900/30 rounded-full flex items-center justify-center mb-6 text-red-500">
@@ -45,7 +48,7 @@ export class ErrorBoundary extends React.Component<Props, State> {
             <RefreshCw size={20} className="mr-2" />
             Recarregar App
           </button>
-          {process.env.NODE_ENV === 'development' && this.state.error && (
+          {isDev && this.state.error && (
             <pre className="mt-8 p-4 bg-black/50 rounded text-xs text-left text-red-300 w-full overflow-auto max-w-sm">
               {this.state.error.toString()}
             </pre>

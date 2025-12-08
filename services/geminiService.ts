@@ -1,8 +1,17 @@
 import { GoogleGenAI, GenerateContentResponse } from "@google/genai";
 import { Language } from '../types';
 
-// Use process.env.API_KEY directly as per guidelines
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+let aiInstance: GoogleGenAI | null = null;
+
+const getAiClient = (): GoogleGenAI => {
+  if (!aiInstance) {
+    // Safely access API Key. If process is undefined (browser), fallback to empty string or handle gracefully.
+    // The coding guidelines require using process.env.API_KEY.
+    const apiKey = (typeof process !== 'undefined' && process.env.API_KEY) ? process.env.API_KEY : '';
+    aiInstance = new GoogleGenAI({ apiKey });
+  }
+  return aiInstance;
+};
 
 export const generateTechnicalAdvice = async (
   prompt: string,
@@ -27,6 +36,7 @@ export const generateTechnicalAdvice = async (
   }
 
   try {
+    const ai = getAiClient();
     const response: GenerateContentResponse = await ai.models.generateContent({
       model: 'gemini-3-pro-preview',
       contents: prompt,
