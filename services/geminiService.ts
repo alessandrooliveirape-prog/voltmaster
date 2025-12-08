@@ -1,22 +1,15 @@
-
 import { GoogleGenAI, GenerateContentResponse } from "@google/genai";
 import { Language } from '../types';
 
-// Ensure API key is present
-const apiKey = process.env.API_KEY || '';
-
-const ai = new GoogleGenAI({ apiKey });
+// Use process.env.API_KEY directly as per guidelines
+const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
 export const generateTechnicalAdvice = async (
   prompt: string,
   context: 'norm' | 'general' | 'safety',
   language: Language
 ): Promise<string> => {
-  if (!apiKey) {
-    throw new Error("API Key is missing. Please configure your environment.");
-  }
-
-  let systemInstruction = "You are an expert Senior Electrical Engineer assistant called VoltMaster AI.";
+  let systemInstruction = "You are VoltMaster AI, a Premium Senior Electrical Engineer Consultant. You provide high-level, authoritative, and precise technical advice.";
   
   // Language injection
   const langInstruction = language === 'pt' ? "Respond ONLY in Portuguese (PT-BR)." 
@@ -26,16 +19,16 @@ export const generateTechnicalAdvice = async (
   systemInstruction += ` ${langInstruction}`;
   
   if (context === 'norm') {
-    systemInstruction += " Focus on technical regulations (IEC 60364, NEC, NBR 5410). Cite specific articles where possible. Be precise.";
+    systemInstruction += " Focus strictly on technical regulations (IEC 60364, NEC, NBR 5410). Cite specific articles and clauses. Be academic yet practical.";
   } else if (context === 'safety') {
-    systemInstruction += " Prioritize safety above all else. Provide checklists and warning about potential arc flash or shock hazards.";
+    systemInstruction += " Prioritize human safety above all. Cite OSHA/NR-10 standards. Provide step-by-step risk mitigation protocols.";
   } else {
-    systemInstruction += " Provide practical, field-ready advice for electricians and engineers. Keep explanations concise and actionable.";
+    systemInstruction += " Provide practical, field-proven engineering advice. Be concise, professional, and direct. Avoid fluff.";
   }
 
   try {
     const response: GenerateContentResponse = await ai.models.generateContent({
-      model: 'gemini-2.5-flash',
+      model: 'gemini-3-pro-preview',
       contents: prompt,
       config: {
         systemInstruction: systemInstruction,

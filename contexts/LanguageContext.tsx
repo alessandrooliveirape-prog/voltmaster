@@ -12,6 +12,11 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 
 const translations: Record<Language, Record<string, string>> = {
   pt: {
+    // Theme
+    'theme.light': 'Claro',
+    'theme.dark': 'Escuro',
+    'theme.auto': 'Auto',
+
     // Nav
     'nav.home': 'Início',
     'nav.tools': 'Ferramentas',
@@ -30,6 +35,14 @@ const translations: Record<Language, Record<string, string>> = {
     'dash.add_note': 'Adicionar Nota de Campo',
     'dash.tip_title': 'DICA DO DIA',
     'dash.tip_text': '"Sempre verifique a ausência de tensão com um testador calibrado antes de tocar. Teste-Antes-de-Tocar."',
+    'dash.backup_title': 'Segurança de Dados',
+    'dash.backup_export': 'Fazer Backup (Exportar)',
+    'dash.backup_import': 'Restaurar Dados (Importar)',
+    'dash.backup_success': 'Dados restaurados com sucesso!',
+    'dash.backup_error': 'Erro ao ler arquivo. Verifique o formato.',
+    'dash.rate_title': 'Gostando do App?',
+    'dash.rate_desc': 'Sua avaliação nos ajuda a criar mais ferramentas gratuitas.',
+    'dash.rate_btn': 'Avaliar Agora ⭐',
 
     // Calculators
     'tools.title': 'Ferramentas de Engenharia',
@@ -122,7 +135,7 @@ const translations: Record<Language, Record<string, string>> = {
     'safe.alert_title': 'Itens Pendentes!',
     'safe.alert_desc': 'Você não pode prosseguir. Sua segurança está em risco. Por favor, verifique os seguintes itens:',
     'safe.success_title': 'Pronto para o Trabalho',
-    'safe.success_desc': 'Todos os protocolos de segurança foram verificados. Trabalhe com cuidado.',
+    'safe.success_desc': 'Todos os protocolos de segurança foram verificados. Trabale com cuidado.',
     'safe.reset': 'Novo Checklist',
 
     // AI Consultant
@@ -130,12 +143,13 @@ const translations: Record<Language, Record<string, string>> = {
     'ai.mode.general': 'Geral',
     'ai.mode.norm': 'Normas (NBR/NEC)',
     'ai.mode.safety': 'Segurança',
-    'ai.welcome': 'Olá. Sou o VoltMaster AI. Posso ajudar com normas NBR/NEC, cálculos ou checklists de segurança.',
+    'ai.welcome': 'Olá. Sou o VoltMaster AI. Posso ajudar com normas NBR/NEC, cálculos o checklists de segurança.',
     'ai.analyzing': 'Analisando parâmetros...',
     'ai.placeholder.general': 'Descreva seu problema elétrico...',
     'ai.placeholder.norm': 'Pergunte sobre tipos de cabos, eletrodutos...',
     'ai.placeholder.safety': 'Pergunte sobre procedimentos LOTO, EPIs...',
     'ai.error': 'Erro de conexão. Verifique sua internet.',
+    'ai.disclaimer': 'Aviso: A IA pode cometer erros. Sempre verifique as informações com normas técnicas oficiais e consulte um profissional.',
 
     // Projects
     'proj.title': 'Projetos',
@@ -163,6 +177,9 @@ const translations: Record<Language, Record<string, string>> = {
     'proj.confirm_delete': 'Tem certeza que deseja excluir este projeto?',
   },
   en: {
+    'theme.light': 'Light',
+    'theme.dark': 'Dark',
+    'theme.auto': 'Auto',
     'nav.home': 'Home',
     'nav.tools': 'Tools',
     'nav.projects': 'Projects',
@@ -178,6 +195,14 @@ const translations: Record<Language, Record<string, string>> = {
     'dash.add_note': 'Add New Field Note',
     'dash.tip_title': 'TIP OF THE DAY',
     'dash.tip_text': '"Always verify voltage absence with a calibrated tester before touching any conductor. Test-Before-Touch."',
+    'dash.backup_title': 'Data Safety',
+    'dash.backup_export': 'Backup (Export)',
+    'dash.backup_import': 'Restore Data (Import)',
+    'dash.backup_success': 'Data restored successfully!',
+    'dash.backup_error': 'Failed to read file. Check format.',
+    'dash.rate_title': 'Enjoying the App?',
+    'dash.rate_desc': 'Your review helps us build more free tools.',
+    'dash.rate_btn': 'Rate Us ⭐',
     'tools.title': 'Engineering Tools',
     'tools.voltage_drop': 'Voltage Drop',
     'tools.voltage_drop_desc': 'Calculate VD% based on distance and load.',
@@ -268,6 +293,7 @@ const translations: Record<Language, Record<string, string>> = {
     'ai.placeholder.norm': 'Ask about cable types, conduit fill...',
     'ai.placeholder.safety': 'Ask for LOTO procedure, PPE...',
     'ai.error': 'Connection trouble. Check API key or network.',
+    'ai.disclaimer': 'Disclaimer: AI can make mistakes. Always verify with official technical standards and consult a professional.',
     'proj.title': 'Projects',
     'proj.details': 'Project Details',
     'proj.new_btn': 'New Project',
@@ -293,6 +319,9 @@ const translations: Record<Language, Record<string, string>> = {
     'proj.confirm_delete': 'Are you sure you want to delete this project?',
   },
   es: {
+    'theme.light': 'Claro',
+    'theme.dark': 'Oscuro',
+    'theme.auto': 'Auto',
     'nav.home': 'Inicio',
     'nav.tools': 'Herram.',
     'nav.projects': 'Proyectos',
@@ -308,6 +337,14 @@ const translations: Record<Language, Record<string, string>> = {
     'dash.add_note': 'Agregar Nota de Campo',
     'dash.tip_title': 'CONSEJO DEL DÍA',
     'dash.tip_text': '"Verifique siempre la ausencia de tensión con un probador calibrado antes de tocar. Test-Before-Touch."',
+    'dash.backup_title': 'Seguridad de Datos',
+    'dash.backup_export': 'Copia de Seguridad (Exportar)',
+    'dash.backup_import': 'Restaurar Datos (Importar)',
+    'dash.backup_success': '¡Datos restaurados con éxito!',
+    'dash.backup_error': 'Error al leer archivo. Verifique formato.',
+    'dash.rate_title': '¿Le gusta la App?',
+    'dash.rate_desc': 'Su reseña nos ayuda a crear más herramientas gratuitas.',
+    'dash.rate_btn': 'Calificar ⭐',
     'tools.title': 'Herramientas de Ingeniería',
     'tools.voltage_drop': 'Caída de Tensión',
     'tools.voltage_drop_desc': 'Calcular % de caída según distancia y carga.',
@@ -378,7 +415,7 @@ const translations: Record<Language, Record<string, string>> = {
     'safe.item_eyes': 'Lentes de seguridad / Visera',
     'safe.item_hands': 'Guantes aislantes (Clase correcta)',
     'safe.item_boots': 'Botas dieléctricas',
-    'safe.item_loto': 'Bloqueo y Etiquetado (LOTO) aplicado',
+    'safe.item_loto': 'Bloqueio y Etiquetado (LOTO) aplicado',
     'safe.item_test': 'Ausencia de Tensión verificada',
     'safe.item_tools': 'Herramientas aisladas (1000V) en buen estado',
     'safe.item_dry': 'Área seca y señalizada',
@@ -398,6 +435,7 @@ const translations: Record<Language, Record<string, string>> = {
     'ai.placeholder.norm': 'Pregunte sobre tipos de cables, ductos...',
     'ai.placeholder.safety': 'Pregunte por procedimientos LOTO, EPP...',
     'ai.error': 'Error de conexión. Verifique su red.',
+    'ai.disclaimer': 'Aviso: La IA puede cometer errores. Verifique siempre con normas oficiales y consulte a un profesional.',
     'proj.title': 'Proyectos',
     'proj.details': 'Detalles del Proyecto',
     'proj.new_btn': 'Nuevo Proyecto',

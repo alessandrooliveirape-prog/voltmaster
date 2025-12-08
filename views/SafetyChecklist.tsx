@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { ArrowLeft, Check, ShieldAlert, ShieldCheck, AlertTriangle, AlertCircle } from 'lucide-react';
+import { ArrowLeft, Check, ShieldCheck, AlertTriangle, AlertCircle } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { Button } from '../components/Button';
 
@@ -33,7 +33,6 @@ export const SafetyChecklist: React.FC<SafetyChecklistProps> = ({ onBack }) => {
     setItems(prev => prev.map(item => 
       item.id === id ? { ...item, checked: !item.checked } : item
     ));
-    // Reset state if user changes something after an error
     if (validationState === 'error') setValidationState('idle');
   };
 
@@ -64,7 +63,7 @@ export const SafetyChecklist: React.FC<SafetyChecklistProps> = ({ onBack }) => {
     const catItems = items.filter(i => i.category === category);
     return (
       <div className="mb-6">
-        <h3 className="text-sm font-bold text-slate-400 uppercase tracking-wider mb-3 pl-2 border-l-4 border-amber-500">
+        <h3 className="text-sm font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-3 pl-2 border-l-4 border-amber-500">
           {getCategoryLabel(category)}
         </h3>
         <div className="space-y-2">
@@ -72,16 +71,16 @@ export const SafetyChecklist: React.FC<SafetyChecklistProps> = ({ onBack }) => {
             <button
               key={item.id}
               onClick={() => toggleItem(item.id)}
-              className={`w-full text-left p-4 rounded-xl border flex items-center transition-all duration-200 ${
+              className={`w-full text-left p-4 rounded-xl border flex items-center transition-all duration-200 shadow-sm ${
                 item.checked 
-                  ? 'bg-green-900/20 border-green-500/50 text-green-100' 
-                  : 'bg-slate-800 border-slate-700 text-slate-300 hover:bg-slate-750'
+                  ? 'bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-500/50 text-green-800 dark:text-green-100' 
+                  : 'bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-750'
               }`}
             >
               <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center mr-4 transition-colors ${
                 item.checked 
-                  ? 'bg-green-500 border-green-500 text-slate-900' 
-                  : 'border-slate-500 bg-transparent'
+                  ? 'bg-green-500 border-green-500 text-white dark:text-slate-900' 
+                  : 'border-slate-300 dark:border-slate-500 bg-transparent'
               }`}>
                 {item.checked && <Check size={14} strokeWidth={4} />}
               </div>
@@ -99,16 +98,16 @@ export const SafetyChecklist: React.FC<SafetyChecklistProps> = ({ onBack }) => {
     return (
       <div className="p-4 h-full flex flex-col items-center justify-center text-center animate-in zoom-in duration-300">
         <div className="w-24 h-24 bg-green-500 rounded-full flex items-center justify-center mb-6 shadow-2xl shadow-green-500/50">
-           <ShieldCheck size={48} className="text-slate-900" />
+           <ShieldCheck size={48} className="text-white dark:text-slate-900" />
         </div>
-        <h2 className="text-3xl font-bold text-white mb-2">{t('safe.success_title')}</h2>
-        <p className="text-slate-400 max-w-xs mb-8">{t('safe.success_desc')}</p>
+        <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">{t('safe.success_title')}</h2>
+        <p className="text-slate-500 dark:text-slate-400 max-w-xs mb-8">{t('safe.success_desc')}</p>
         
         <div className="w-full max-w-sm space-y-3">
-          <Button fullWidth onClick={onBack} variant="secondary">
+          <Button fullWidth onClick={onBack} variant="secondary" className="bg-slate-200 text-slate-800 hover:bg-slate-300 dark:bg-slate-700 dark:text-white dark:hover:bg-slate-600">
             {t('proj.back')}
           </Button>
-          <Button fullWidth onClick={reset} variant="ghost">
+          <Button fullWidth onClick={reset} variant="ghost" className="text-slate-500 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800">
             {t('safe.reset')}
           </Button>
         </div>
@@ -119,19 +118,19 @@ export const SafetyChecklist: React.FC<SafetyChecklistProps> = ({ onBack }) => {
   return (
     <div className="p-4 pb-24 max-w-2xl mx-auto relative">
       <div className="flex items-center mb-6">
-        <button onClick={onBack} className="p-2 -ml-2 text-slate-400 hover:text-white">
+        <button onClick={onBack} className="p-2 -ml-2 text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
           <ArrowLeft size={24} />
         </button>
-        <h2 className="text-xl font-bold ml-2">{t('safe.title')}</h2>
+        <h2 className="text-xl font-bold ml-2 text-slate-900 dark:text-white">{t('safe.title')}</h2>
       </div>
 
       {/* Progress Bar */}
-      <div className="sticky top-0 bg-slate-900 z-10 py-2 mb-4">
-        <div className="flex justify-between text-xs text-slate-400 mb-1 font-bold">
+      <div className="sticky top-0 bg-slate-50 dark:bg-slate-900 z-10 py-2 mb-4 transition-colors duration-300">
+        <div className="flex justify-between text-xs text-slate-500 dark:text-slate-400 mb-1 font-bold">
           <span>PROGRESS</span>
           <span>{progress}%</span>
         </div>
-        <div className="h-2 bg-slate-800 rounded-full overflow-hidden">
+        <div className="h-2 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
           <div 
             className="h-full bg-amber-500 transition-all duration-300"
             style={{ width: `${progress}%` }}
@@ -157,25 +156,25 @@ export const SafetyChecklist: React.FC<SafetyChecklistProps> = ({ onBack }) => {
 
       {/* Error Modal */}
       {validationState === 'error' && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-in fade-in duration-200">
-          <div className="bg-slate-900 border border-red-500/50 rounded-2xl p-6 max-w-sm w-full shadow-2xl relative">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 dark:bg-black/80 backdrop-blur-sm animate-in fade-in duration-200">
+          <div className="bg-white dark:bg-slate-900 border border-red-200 dark:border-red-500/50 rounded-2xl p-6 max-w-sm w-full shadow-2xl relative">
              <button 
                onClick={() => setValidationState('idle')}
-               className="absolute top-4 right-4 text-slate-500 hover:text-white"
+               className="absolute top-4 right-4 text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors"
              >
                <AlertCircle size={24} />
              </button>
              
              <div className="flex flex-col items-center text-center">
-               <div className="w-16 h-16 bg-red-900/30 rounded-full flex items-center justify-center mb-4 text-red-500">
+               <div className="w-16 h-16 bg-red-100 dark:bg-red-900/30 rounded-full flex items-center justify-center mb-4 text-red-500">
                  <AlertTriangle size={32} />
                </div>
-               <h3 className="text-xl font-bold text-white mb-2">{t('safe.alert_title')}</h3>
-               <p className="text-red-200 text-sm mb-6 leading-relaxed">{t('safe.alert_desc')}</p>
+               <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">{t('safe.alert_title')}</h3>
+               <p className="text-red-600 dark:text-red-200 text-sm mb-6 leading-relaxed">{t('safe.alert_desc')}</p>
                
-               <div className="w-full bg-red-950/30 rounded-lg p-3 text-left mb-6 max-h-40 overflow-y-auto border border-red-900/50">
+               <div className="w-full bg-red-50 dark:bg-red-950/30 rounded-lg p-3 text-left mb-6 max-h-40 overflow-y-auto border border-red-100 dark:border-red-900/50">
                  {items.filter(i => !i.checked).map(i => (
-                   <div key={i.id} className="flex items-start mb-2 text-red-300 text-xs">
+                   <div key={i.id} className="flex items-start mb-2 text-red-700 dark:text-red-300 text-xs">
                      <span className="mr-2">•</span>
                      {t(i.id)}
                    </div>

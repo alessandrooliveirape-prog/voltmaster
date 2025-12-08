@@ -14,6 +14,8 @@ export enum ViewState {
 
 export type Language = 'pt' | 'en' | 'es';
 
+export type Theme = 'light' | 'dark' | 'auto';
+
 export interface Project {
   id: string;
   name: string;

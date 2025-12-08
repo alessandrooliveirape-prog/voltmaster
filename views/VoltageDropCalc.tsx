@@ -45,24 +45,26 @@ export const VoltageDropCalc: React.FC<VoltageDropCalcProps> = ({ onBack }) => {
   return (
     <div className="p-4 pb-24 max-w-2xl mx-auto">
       <div className="flex items-center mb-6">
-        <button onClick={onBack} className="p-2 -ml-2 text-slate-400 hover:text-white">
+        <button onClick={onBack} className="p-2 -ml-2 text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
           <ArrowLeft size={24} />
         </button>
-        <h2 className="text-xl font-bold ml-2">{t('vd.title')}</h2>
+        <h2 className="text-xl font-bold ml-2 text-slate-900 dark:text-white">{t('vd.title')}</h2>
       </div>
 
-      <div className="bg-slate-800 rounded-xl p-6 shadow-lg border border-slate-700 space-y-6">
+      <div className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-sm dark:shadow-lg border border-slate-200 dark:border-slate-700 space-y-6">
         
         {/* Voltage */}
         <div>
-          <label className="block text-sm font-medium text-slate-400 mb-2">{t('vd.voltage')}</label>
+          <label className="block text-sm font-medium text-slate-500 dark:text-slate-400 mb-2">{t('vd.voltage')}</label>
           <div className="grid grid-cols-3 gap-2">
             {[110, 220, 380].map(v => (
               <button
                 key={v}
                 onClick={() => setVoltage(v)}
-                className={`py-2 px-3 rounded-lg text-sm font-medium transition-colors ${
-                  voltage === v ? 'bg-amber-500 text-slate-900' : 'bg-slate-700 text-slate-300'
+                className={`py-2 px-3 rounded-lg text-sm font-medium transition-colors border ${
+                  voltage === v 
+                    ? 'bg-amber-500 text-slate-900 border-amber-500' 
+                    : 'bg-slate-50 dark:bg-slate-700 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-600 hover:bg-slate-100 dark:hover:bg-slate-600'
                 }`}
               >
                 {v}V
@@ -74,32 +76,32 @@ export const VoltageDropCalc: React.FC<VoltageDropCalcProps> = ({ onBack }) => {
         {/* Inputs Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium text-slate-400 mb-1">{t('vd.current')}</label>
+            <label className="block text-sm font-medium text-slate-500 dark:text-slate-400 mb-1">{t('vd.current')}</label>
             <input
               type="number"
               value={current}
               onChange={(e) => setCurrent(parseFloat(e.target.value) || 0)}
-              className="w-full bg-slate-900 border border-slate-700 rounded-lg p-3 text-white focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none"
+              className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg p-3 text-slate-900 dark:text-white focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none transition-colors"
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-slate-400 mb-1">{t('vd.distance')}</label>
+            <label className="block text-sm font-medium text-slate-500 dark:text-slate-400 mb-1">{t('vd.distance')}</label>
             <input
               type="number"
               value={distance}
               onChange={(e) => setDistance(parseFloat(e.target.value) || 0)}
-              className="w-full bg-slate-900 border border-slate-700 rounded-lg p-3 text-white focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none"
+              className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg p-3 text-slate-900 dark:text-white focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none transition-colors"
             />
           </div>
         </div>
 
         {/* Cable Selector */}
         <div>
-          <label className="block text-sm font-medium text-slate-400 mb-2">{t('vd.cable')}</label>
+          <label className="block text-sm font-medium text-slate-500 dark:text-slate-400 mb-2">{t('vd.cable')}</label>
           <select
             value={cableSize}
             onChange={(e) => setCableSize(parseFloat(e.target.value))}
-            className="w-full bg-slate-900 border border-slate-700 rounded-lg p-3 text-white focus:ring-2 focus:ring-amber-500 outline-none"
+            className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg p-3 text-slate-900 dark:text-white focus:ring-2 focus:ring-amber-500 outline-none transition-colors"
           >
             {[1.5, 2.5, 4, 6, 10, 16, 25, 35, 50, 70, 95].map(size => (
               <option key={size} value={size}>{size} mm²</option>
@@ -109,12 +111,14 @@ export const VoltageDropCalc: React.FC<VoltageDropCalcProps> = ({ onBack }) => {
 
         {/* Material Toggle */}
         <div>
-            <label className="block text-sm font-medium text-slate-400 mb-2">{t('vd.material')}</label>
-            <div className="flex bg-slate-900 p-1 rounded-lg">
+            <label className="block text-sm font-medium text-slate-500 dark:text-slate-400 mb-2">{t('vd.material')}</label>
+            <div className="flex bg-slate-100 dark:bg-slate-900 p-1 rounded-lg border border-slate-200 dark:border-slate-700">
             <button
                 onClick={() => setMaterial('copper')}
                 className={`flex-1 py-2 rounded-md text-sm font-medium transition-all ${
-                material === 'copper' ? 'bg-slate-700 text-white shadow' : 'text-slate-500'
+                material === 'copper' 
+                  ? 'bg-white dark:bg-slate-700 text-slate-900 dark:text-white shadow ring-1 ring-slate-200 dark:ring-0' 
+                  : 'text-slate-500 dark:text-slate-500'
                 }`}
             >
                 {t('vd.copper')}
@@ -122,7 +126,9 @@ export const VoltageDropCalc: React.FC<VoltageDropCalcProps> = ({ onBack }) => {
             <button
                 onClick={() => setMaterial('aluminum')}
                 className={`flex-1 py-2 rounded-md text-sm font-medium transition-all ${
-                material === 'aluminum' ? 'bg-slate-700 text-white shadow' : 'text-slate-500'
+                material === 'aluminum' 
+                  ? 'bg-white dark:bg-slate-700 text-slate-900 dark:text-white shadow ring-1 ring-slate-200 dark:ring-0' 
+                  : 'text-slate-500 dark:text-slate-500'
                 }`}
             >
                 {t('vd.aluminum')}
@@ -134,14 +140,16 @@ export const VoltageDropCalc: React.FC<VoltageDropCalcProps> = ({ onBack }) => {
         {result && (
           <div className={`mt-6 p-4 rounded-lg border ${
             result.acceptable 
-              ? 'bg-green-900/20 border-green-800' 
-              : 'bg-red-900/20 border-red-800'
+              ? 'bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800' 
+              : 'bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800'
           }`}>
             <div className="flex items-start justify-between">
               <div>
-                <span className="block text-sm text-slate-400">{t('vd.result_drop')}</span>
+                <span className="block text-sm text-slate-500 dark:text-slate-400">{t('vd.result_drop')}</span>
                 <span className={`text-3xl font-bold ${
-                  result.acceptable ? 'text-green-400' : 'text-red-400'
+                  result.acceptable 
+                    ? 'text-green-600 dark:text-green-400' 
+                    : 'text-red-600 dark:text-red-400'
                 }`}>
                   {result.dropVolts} V
                 </span>
@@ -149,12 +157,12 @@ export const VoltageDropCalc: React.FC<VoltageDropCalcProps> = ({ onBack }) => {
               </div>
               <div>
                 {result.acceptable ? (
-                  <div className="flex items-center text-green-500 bg-green-900/30 px-3 py-1 rounded-full">
+                  <div className="flex items-center text-green-700 dark:text-green-500 bg-green-100 dark:bg-green-900/30 px-3 py-1 rounded-full border border-green-200 dark:border-transparent">
                     <CheckCircle2 size={16} className="mr-1.5" />
                     <span className="text-xs font-bold uppercase tracking-wider">{t('vd.ok')}</span>
                   </div>
                 ) : (
-                  <div className="flex items-center text-red-500 bg-red-900/30 px-3 py-1 rounded-full">
+                  <div className="flex items-center text-red-700 dark:text-red-500 bg-red-100 dark:bg-red-900/30 px-3 py-1 rounded-full border border-red-200 dark:border-transparent">
                     <AlertTriangle size={16} className="mr-1.5" />
                     <span className="text-xs font-bold uppercase tracking-wider">{t('vd.high')}</span>
                   </div>
@@ -162,7 +170,7 @@ export const VoltageDropCalc: React.FC<VoltageDropCalcProps> = ({ onBack }) => {
               </div>
             </div>
             {!result.acceptable && (
-              <p className="mt-2 text-xs text-red-300">
+              <p className="mt-2 text-xs text-red-600 dark:text-red-300 font-medium">
                 {t('vd.warning')} {
                   [1.5, 2.5, 4, 6, 10, 16, 25, 35, 50, 70, 95].find(s => s > cableSize)
                 } mm².

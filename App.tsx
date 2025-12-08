@@ -13,6 +13,7 @@ import { AIConsultant } from './views/AIConsultant';
 import { Projects } from './views/Projects';
 import { ViewState } from './types';
 import { LanguageProvider } from './contexts/LanguageContext';
+import { ThemeProvider } from './contexts/ThemeContext';
 
 function AppContent() {
   const [currentView, setCurrentView] = useState<ViewState>(ViewState.DASHBOARD);
@@ -55,8 +56,8 @@ function AppContent() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-900 text-slate-50 font-sans selection:bg-amber-500/30">
-      <div className="max-w-md mx-auto min-h-screen bg-slate-900 shadow-2xl relative">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-slate-50 font-sans selection:bg-amber-500/30 transition-colors duration-300">
+      <div className="max-w-md mx-auto min-h-screen bg-slate-50 dark:bg-slate-900 shadow-2xl relative transition-colors duration-300">
         <main className="min-h-screen">
           {renderView()}
         </main>
@@ -69,9 +70,11 @@ function AppContent() {
 
 function App() {
   return (
-    <LanguageProvider>
-      <AppContent />
-    </LanguageProvider>
+    <ThemeProvider>
+      <LanguageProvider>
+        <AppContent />
+      </LanguageProvider>
+    </ThemeProvider>
   );
 }
 

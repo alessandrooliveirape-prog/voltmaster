@@ -100,31 +100,31 @@ export const OhmsLawCalc: React.FC<OhmsLawCalcProps> = ({ onBack }) => {
     const base = "w-full rounded-lg p-4 text-xl font-mono focus:outline-none focus:ring-2 transition-all ";
     
     if (isCalculated) {
-      return base + "bg-amber-900/20 border border-amber-500/50 text-amber-400";
+      return base + "bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-500/50 text-amber-600 dark:text-amber-400";
     }
-    return base + "bg-slate-800 border border-slate-700 text-white focus:ring-amber-500";
+    return base + "bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white focus:ring-amber-500";
   };
 
   return (
     <div className="p-4 pb-24 max-w-2xl mx-auto">
       <div className="flex items-center mb-6">
-        <button onClick={onBack} className="p-2 -ml-2 text-slate-400 hover:text-white">
+        <button onClick={onBack} className="p-2 -ml-2 text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
           <ArrowLeft size={24} />
         </button>
-        <h2 className="text-xl font-bold ml-2">{t('ohm.title')}</h2>
+        <h2 className="text-xl font-bold ml-2 text-slate-900 dark:text-white">{t('ohm.title')}</h2>
       </div>
 
-      <div className="bg-slate-900 border border-slate-800 rounded-xl p-6 shadow-xl">
+      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-6 shadow-sm dark:shadow-xl">
         <div className="flex items-center justify-between mb-6">
-           <p className="text-sm text-slate-400">{t('ohm.subtitle')}</p>
-           <button onClick={clear} className="text-xs text-slate-500 hover:text-white flex items-center">
+           <p className="text-sm text-slate-500 dark:text-slate-400">{t('ohm.subtitle')}</p>
+           <button onClick={clear} className="text-xs text-slate-500 hover:text-slate-900 dark:hover:text-white flex items-center transition-colors">
              <RefreshCw size={12} className="mr-1" /> {t('ohm.clear')}
            </button>
         </div>
 
         <div className="grid grid-cols-2 gap-4">
           <div className="space-y-1">
-            <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">{t('ohm.v')}</label>
+            <label className="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">{t('ohm.v')}</label>
             <input 
               type="number" 
               value={values.v}
@@ -134,7 +134,7 @@ export const OhmsLawCalc: React.FC<OhmsLawCalcProps> = ({ onBack }) => {
             />
           </div>
           <div className="space-y-1">
-            <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">{t('ohm.i')}</label>
+            <label className="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">{t('ohm.i')}</label>
             <input 
               type="number" 
               value={values.i}
@@ -144,7 +144,7 @@ export const OhmsLawCalc: React.FC<OhmsLawCalcProps> = ({ onBack }) => {
             />
           </div>
           <div className="space-y-1">
-            <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">{t('ohm.r')}</label>
+            <label className="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">{t('ohm.r')}</label>
             <input 
               type="number" 
               value={values.r}
@@ -154,7 +154,7 @@ export const OhmsLawCalc: React.FC<OhmsLawCalcProps> = ({ onBack }) => {
             />
           </div>
           <div className="space-y-1">
-            <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">{t('ohm.p')}</label>
+            <label className="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">{t('ohm.p')}</label>
             <input 
               type="number" 
               value={values.p}
@@ -167,7 +167,7 @@ export const OhmsLawCalc: React.FC<OhmsLawCalcProps> = ({ onBack }) => {
 
         {lastCalculated.length > 0 && (
           <div className="mt-6 flex justify-center">
-            <div className="bg-amber-500/10 text-amber-500 px-4 py-2 rounded-full text-sm font-medium flex items-center">
+            <div className="bg-amber-100 dark:bg-amber-500/10 text-amber-700 dark:text-amber-500 px-4 py-2 rounded-full text-sm font-medium flex items-center border border-amber-200 dark:border-transparent">
               <Zap size={16} className="mr-2" />
               Calculated
             </div>
