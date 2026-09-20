@@ -16,18 +16,23 @@
 ## 🌟 Core Features
 
 ### 1. 🧮 Precision Engineering Calculators
+* **Solar Photovoltaic Sizing:** Calculate panel quantity (Wp), required array power (kWp), inverter rating, roof area, and payback analysis based on daily Peak Sun Hours (PSH / HSP).
+* **Electric Motors & Starting Systems:** Compute full load current ($I_n$), inrush starting current ($I_p$), cable cross-section, contactor rating, and choose between Direct-on-Line, Star-Delta, and Soft-Starters.
 * **Voltage Drop Calculator:** Compute single-phase and three-phase voltage drops across copper and aluminum conductors with custom power factor and distance parameters.
 * **Conduit Fill Calculator:** Calculate raceway capacity limits per international standards to prevent overheating and cable jamming.
 * **Breaker & Overcurrent Protection Sizing:** Size thermal-magnetic circuit breakers according to continuous and non-continuous load ratings.
 * **Ohm's Law & Power Triangle:** Rapid multi-variable calculations for real (kW), reactive (kVAR), and apparent (kVA) power.
 * **Power Factor Correction:** Determine capacitor bank requirements to achieve target efficiency and eliminate utility penalty tariffs.
 
-### 2. 🤖 Gemini AI Electrical Consultant
-* Real-time technical consultation fine-tuned for electrical safety protocols (NR-10, OSHA) and standards compliance.
+### 2. 🤖 Gemini 2.5 AI Electrical Consultant
+* Real-time technical consultation fine-tuned for electrical safety protocols (NR-10, OSHA) and standards compliance (NBR 5410, IEC 60364, NEC).
+* In-app API Key settings modal with secure browser storage (`localStorage`) and model selection (`gemini-2.5-flash`, `gemini-2.5-pro`, `gemini-2.0-flash`).
+* One-click technical prompt chips for instant regulatory questions and calculation verification.
 * Deterministic low-temperature reasoning (`temperature: 0.3`) for mathematically grounded recommendations.
 * Multi-context switching: Regulatory Standards (`norm`), Safety Protocols (`safety`), or Practical Field Advice (`general`).
 
-### 3. 🌐 Multilingual & Offline-First (PWA)
+### 3. 🌐 100% Offline-First (PWA) & Zero CDN Dependencies
+* **Self-Contained Tailwind CSS v4:** Zero reliance on external runtime CDNs; builds and runs completely offline.
 * **Native Multilingual:** Full interface and AI response localization in **English**, **Portuguese (PT-BR)**, and **Spanish (ES)**.
 * **Offline Service Worker (`sw.js`):** Cache critical calculation engines for remote fieldwork where cellular connectivity is unavailable.
 * **Installable App:** Direct homescreen installation across iOS, Android, macOS, and Windows with zero app store friction.

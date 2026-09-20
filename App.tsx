@@ -8,6 +8,8 @@ import { OhmsLawCalc } from './views/OhmsLawCalc';
 import { ConduitFillCalc } from './views/ConduitFillCalc';
 import { PowerFactorCalc } from './views/PowerFactorCalc';
 import { BreakerSizingCalc } from './views/BreakerSizingCalc';
+import { SolarPvCalc } from './views/SolarPvCalc';
+import { MotorCalc } from './views/MotorCalc';
 import { SafetyChecklist } from './views/SafetyChecklist';
 import { AIConsultant } from './views/AIConsultant';
 import { Projects } from './views/Projects';
@@ -26,6 +28,12 @@ function AppContent() {
       case ViewState.CALCULATORS:
         return <Calculators onNavigate={setCurrentView} />;
       
+      case ViewState.CALC_SOLAR_PV:
+        return <SolarPvCalc onBack={() => setCurrentView(ViewState.CALCULATORS)} />;
+
+      case ViewState.CALC_MOTOR:
+        return <MotorCalc onBack={() => setCurrentView(ViewState.CALCULATORS)} />;
+
       case ViewState.CALC_VOLTAGE_DROP:
         return <VoltageDropCalc onBack={() => setCurrentView(ViewState.CALCULATORS)} />;
 
@@ -56,8 +64,8 @@ function AppContent() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-slate-50 font-sans selection:bg-amber-500/30 transition-colors duration-300">
-      <div className="max-w-md mx-auto min-h-screen bg-slate-50 dark:bg-slate-900 shadow-2xl relative transition-colors duration-300">
+    <div className="min-h-screen bg-slate-100 dark:bg-slate-950 text-slate-900 dark:text-slate-50 font-sans selection:bg-amber-500/30 transition-colors duration-300">
+      <div className="max-w-md md:max-w-2xl lg:max-w-3xl mx-auto min-h-screen bg-slate-50 dark:bg-slate-900 shadow-2xl relative transition-colors duration-300">
         <main className="min-h-screen">
           {renderView()}
         </main>

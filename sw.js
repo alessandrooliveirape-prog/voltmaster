@@ -1,5 +1,5 @@
 
-const CACHE_NAME = 'voltmaster-pro-v2';
+const CACHE_NAME = 'voltmaster-pro-v3';
 const STATIC_ASSETS = [
   './',
   './index.html',

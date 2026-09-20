@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR" class="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>VoltMaster Pro</title>
+    <title>VoltMaster Pro — Engenharia Elétrica & Calculadoras</title>
+    <meta name="description" content="PWA profissional para cálculos de engenharia elétrica (NBR 5410, IEC 60364, NEC), queda de tensão, condutores, solar e consultor IA." />
     
     <!-- PWA Configuration -->
     <link rel="manifest" href="/manifest.json">
@@ -12,73 +13,12 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="VoltMaster">
     
-    <!-- Tailwind -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        darkMode: 'class',
-        theme: {
-          extend: {
-            colors: {
-              slate: {
-                750: '#2d3b55',
-              }
-            }
-          }
-        }
-      }
-    </script>
-    
     <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <style>
-      body {
-        font-family: 'Inter', sans-serif;
-        /* Background handled by App container */
-        overscroll-behavior-y: none; /* Prevent pull-to-refresh on mobile */
-      }
-      /* Custom Scrollbar */
-      ::-webkit-scrollbar {
-        width: 8px;
-      }
-      ::-webkit-scrollbar-track {
-        background: transparent; 
-      }
-      ::-webkit-scrollbar-thumb {
-        background: #94a3b8; 
-        border-radius: 4px;
-      }
-      ::-webkit-scrollbar-thumb:hover {
-        background: #64748b; 
-      }
-      .dark ::-webkit-scrollbar-track {
-        background: #1e293b; 
-      }
-      .dark ::-webkit-scrollbar-thumb {
-        background: #475569; 
-      }
-      
-      /* PWA Safe Area for iPhone X+ */
-      .pb-safe {
-        padding-bottom: env(safe-area-inset-bottom);
-      }
-    </style>
-  <script type="importmap">
-{
-  "imports": {
-    "react-dom": "https://aistudiocdn.com/react-dom@^19.2.0",
-    "react-dom/client": "https://aistudiocdn.com/react-dom@^19.2.0/client",
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
-    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0",
-    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.555.0",
-    "react/": "https://aistudiocdn.com/react@^19.2.0/",
-    "react": "https://aistudiocdn.com/react@^19.2.0"
-  }
-}
-</script>
-</head>
-  <body>
+  </head>
+  <body class="bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-slate-100 antialiased min-h-screen">
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
     
@@ -87,10 +27,10 @@
         window.addEventListener('load', () => {
           navigator.serviceWorker.register('/sw.js')
             .then(registration => {
-              console.log('SW registered: ', registration);
+              console.log('VoltMaster SW registrado:', registration.scope);
             })
             .catch(registrationError => {
-              console.log('SW registration failed: ', registrationError);
+              console.log('VoltMaster SW falhou:', registrationError);
             });
         });
       }

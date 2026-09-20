@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Zap, Activity, Battery, Triangle, ShieldCheck, ClipboardCheck, Lock, ArrowUpRight } from 'lucide-react';
+import { Zap, Activity, Battery, Triangle, ShieldCheck, ClipboardCheck, Lock, ArrowUpRight, Sun, Sliders } from 'lucide-react';
 import { ViewState } from '../types';
 import { useLanguage } from '../contexts/LanguageContext';
 
@@ -22,6 +22,18 @@ export const Calculators: React.FC<CalculatorsProps> = ({ onNavigate }) => {
   };
 
   const calcTools = [
+    {
+      id: ViewState.CALC_SOLAR_PV,
+      title: t('tools.solar_pv') || 'Solar Fotovoltaico',
+      icon: <Sun className="text-amber-500" size={24} />,
+      status: 'Available'
+    },
+    {
+      id: ViewState.CALC_MOTOR,
+      title: t('tools.motor') || 'Motores & Partida',
+      icon: <Sliders className="text-indigo-500" size={24} />,
+      status: 'Available'
+    },
     {
       id: ViewState.CALC_VOLTAGE_DROP,
       title: t('tools.voltage_drop'),
